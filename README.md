@@ -1,4 +1,4 @@
-# FormAI dataset
+# FormAI Dataset
 
 ![LOGO](https://github.com/FormAI-Dataset/FormAI-dataset/assets/138256298/3b730b10-2681-472f-aeb7-3e97a7cfa61a)
 
