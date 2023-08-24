@@ -43,19 +43,31 @@ git clone https://github.com/FormAI-Dataset/FormAI-dataset/
 3. The subsequent step involves installing all the necessary dependencies to compile the 112,000 C files present in the dataset.
 
 ```bash
-sudo apt install -y \
-build-essential             # Essential compilation tools, like gcc and make.
-libsqlite3-dev              # SQLite3 development files, useful for building apps with SQLite3 support.
-libssl-dev                  # Development files for OpenSSL, for apps with SSL support.
-libmysqlclient-dev          # MySQL/MariaDB client library development files.
-libpq-dev                   # PostgreSQL client library development files, for apps with PostgreSQL support.
-libportaudio2               # Portable audio I/O library, runtime version.
-portaudio19-dev             # Portable audio I/O library, development files.
-libpcap-dev                 # Library for network monitoring; development files.
-libqrencode-dev             # QR code encoding library; development files.
-libsdl2-dev                 # Simple DirectMedia Layer development files, a library for making games.
-freeglut3-dev               # OpenGL Utility Toolkit (GLUT) development files.
-libcurl4-openssl-dev        # Development files and documentation for libcurl (OpenSSL flavour).
+# Essential compilation tools, like gcc and make.
+sudo apt install -y build-essential
+# SQLite3 development files, useful for building apps with SQLite3 support.
+sudo apt install -y libsqlite3-dev
+# Development files for OpenSSL, for apps with SSL support.
+sudo apt install -y libssl-dev
+# MySQL/MariaDB client library development files.
+sudo apt install -y libmysqlclient-dev
+# PostgreSQL client library development files, for apps with PostgreSQL support.
+sudo apt install -y libpq-dev
+# Portable audio I/O library, runtime version.
+sudo apt install -y libportaudio2
+# Portable audio I/O library, development files.
+sudo apt install -y portaudio19-dev
+# Library for network monitoring; development files.
+sudo apt install -y libpcap-dev
+# QR code encoding library; development files.
+sudo apt install -y libqrencode-dev
+# Simple DirectMedia Layer development files, a library for making games.
+sudo apt install -y libsdl2-dev
+# OpenGL Utility Toolkit (GLUT) development files.
+sudo apt install -y freeglut3-dev
+# Development files and documentation for libcurl (OpenSSL flavour).
+sudo apt install -y libcurl4-openssl-dev
+
 ```
  
 4. One can verify the successful installation of the dependencies by testing 1000 files from the dataset. This command will verify that the first 1000 files from the dataset compile successfully (this process usually takes around 2-3 minutes). 
