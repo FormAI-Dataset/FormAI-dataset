@@ -121,7 +121,7 @@ The outpus is the same as ESBMC found :  `FormAI_14569.c,VULNERABLE,main,24.0,bu
  # Disclaimer 
 
    
-SAH256 checksum of the files:
+SHA256 checksum of the files:
 
 `FormAI_dataset_C_samples-V1.zip : fc458020ad0e9b0999882d4bfdd27edfdee2f0ff5de22848e11352d64230ca47`
 `FormAI_dataset_classification-V1.zip : 33552e18ce6b5919d9eb454f584c0510b561baef69c51cf4405f9d85a96631f5`
