@@ -96,7 +96,7 @@ In this guide, we illustrate the process of classifying the samples in the FormA
 7. If you wish to test ESBMC on an individual file from the FormAI dataset, use the command below (taking FormAI_14569.c as a reference):
 
    ```bash
-   linux-release/bin/esbmc DATASET/FormAI_14569.c  --overflow --timeout 30 --unwind 1 --multi-property --no-unwinding-assertions
+   linux-release/bin/esbmc DATASET/FormAI_14569.c  --overflow --memory-leak-check --timeout 30 --unwind 1 --multi-property --no-unwinding-assertions
 
    ```
    The file appears to be vulnerable, revealing a buffer overflow in the scanf() function. Below is the output from ESBMC:
