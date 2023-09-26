@@ -87,12 +87,12 @@ The validation of dataset compilation was conducted on a system running Ubuntu L
    ESBMC depends on numerous external tools and has a variety of intricate dependencies, from SMT solvers to more complex ones. Nevertheless, there's an option to utilize a pre-compiled binary version, which can be obtained using the command provided below:
 
    ```bash
-   wget https://github.com/esbmc/esbmc/releases/download/nightly-b0f3451fd011533120376edddc36936bc4ea5073/esbmc-linux.zip && unzip esbmc-linux.zip && rm esbmc-linux.zip && chmod 777 linux-release/bin/esbmc
+   wget https://github.com/esbmc/esbmc/releases/download/v7.3/ESBMC-Linux.zip && unzip ESBMC-Linux.zip && rm ESBMC-Linux.zip && chmod 777 bin/esbmc
    ```
 8. If you wish to test ESBMC on an individual file from the FormAI dataset, use the command below (taking FormAI_14569.c as a reference):
 
    ```bash
-   linux-release/bin/esbmc DATASET/FormAI_14569.c  --overflow --memory-leak-check --timeout 30 --unwind 1 --multi-property --no-unwinding-assertions
+   bin/esbmc DATASET/FormAI_14569.c  --overflow --memory-leak-check --timeout 30 --unwind 1 --multi-property --no-unwinding-assertions
 
    ```
    The file appears to be vulnerable, revealing a buffer overflow in the scanf() function. Below is the output from ESBMC:
