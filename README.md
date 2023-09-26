@@ -46,7 +46,13 @@ In this guide, we illustrate the process of classifying the samples in the FormA
    ```bash
    git clone https://github.com/FormAI-Dataset/FormAI-dataset/
    ```
-2. The subsequent step involves installing all the necessary dependencies to compile the 112,000 C files present in the dataset.
+
+2. The following sequence of commands includes an operating system upgrade and the installation of the build-essential package, a crucial requirement for the proper compilation of the dataset. 
+
+   ```bash
+   sudo apt update && sudo apt upgrade -y && sudo apt install build-essential -y
+   ```
+3. The subsequent step involves installing all the necessary dependencies to compile the 112,000 C files present in the dataset.
 
    ```bash
    # Essential compilation tools, like gcc and make.
@@ -78,24 +84,24 @@ In this guide, we illustrate the process of classifying the samples in the FormA
    
    ```
  
-3. Unzip the .C samples from the compressed file (this action will generate a DATASET directory containing all the files):
+4. Unzip the .C samples from the compressed file (this action will generate a DATASET directory containing all the files):
 
    ```bash
       unzip FormAI-dataset/FormAI_dataset_C_samples-V1.zip && unzip FormAI-dataset/FormAI_dataset_classification-V1.zip
    ```
 
-4. One can verify the successful installation of the dependencies by testing 1000 files from the dataset. This command will verify that the first 1000 files from the dataset compile successfully (this process usually takes around 2-3 minutes). 
+5. One can verify the successful installation of the dependencies by testing 1000 files from the dataset. This command will verify that the first 1000 files from the dataset compile successfully (this process usually takes around 2-3 minutes). 
 
    ```bash
       find DATASET -name "*.c" | head -n 1000 | xargs -I{} bash -c 'gcc {} -w -lcrypto -lsqlite3 -lmysqlclient -lpq -lssl -lportaudio -lpcap -lqrencode -lSDL2 -lglut -lGLU -lGL -lcurl -lm &>/dev/null &&  echo {}' | wc -l
    ```
-5. If the result is 1000 from the previous run, it indicates that all the tested files were compiled without issues. Our system is ready to use the provided files. To retrieve and compile the C code from a specific row in the FormAI_dataset.csv, use the command below (taking row number 3679 as a example):
+6. If the result is 1000 from the previous run, it indicates that all the tested files were compiled without issues. Our system is ready to use the provided files. To retrieve and compile the C code from a specific row in the FormAI_dataset.csv, use the command below (taking row number 3679 as a example):
 
    ```bash
    gcc -x c <(csvtool drop 3679 FormAI_dataset.csv | csvtool -t ',' head 1 - | csvtool -t ',' col 3 - | sed 's/^"//; s/"$//' | sed 's/""/"/g') -lm -lcrypto -lmysqlclient -lpq -lssl -lportaudio -lpcap -lqrencode -lSDL2 -lglut -lGLU -lGL -lcurl -o output
    ```
 
-6. Each program is categorized according to the vulnerabilities found in its code, using a formal verification technique that leverages the Efficient SMT-based Bounded Model Checker (ESBMC).
+7. Each program is categorized according to the vulnerabilities found in its code, using a formal verification technique that leverages the Efficient SMT-based Bounded Model Checker (ESBMC).
 
    ESBMC is a mature, permissively licensed open-source context-bounded model checker for verifying single- and multithreaded C/C++, Kotlin, and Solidity programs. It can automatically verify predefined safety properties (e.g., bounds check, pointer safety, overflow) and user-defined program assertions.
 
@@ -105,7 +111,7 @@ In this guide, we illustrate the process of classifying the samples in the FormA
    ```bash
    wget https://github.com/esbmc/esbmc/releases/download/nightly-b0f3451fd011533120376edddc36936bc4ea5073/esbmc-linux.zip && unzip esbmc-linux.zip && rm esbmc-linux.zip && chmod 777 linux-release/bin/esbmc
    ```
-7. If you wish to test ESBMC on an individual file from the FormAI dataset, use the command below (taking FormAI_14569.c as a reference):
+8. If you wish to test ESBMC on an individual file from the FormAI dataset, use the command below (taking FormAI_14569.c as a reference):
 
    ```bash
    linux-release/bin/esbmc DATASET/FormAI_14569.c  --overflow --memory-leak-check --timeout 30 --unwind 1 --multi-property --no-unwinding-assertions
@@ -124,7 +130,7 @@ In this guide, we illustrate the process of classifying the samples in the FormA
       VERIFICATION FAILED
    ```
 
-8. As a concluding action, you can confirm that this vulnerability is indeed present in the FormAI dataset by executing the command below:
+9. As a concluding action, you can confirm that this vulnerability is indeed present in the FormAI dataset by executing the command below:
 
    ```bash
    cat FormAI-dataset/FormAI_dataset_human_readable-V1.csv | grep 'FormAI_14569.c'
