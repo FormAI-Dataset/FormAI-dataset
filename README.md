@@ -57,31 +57,7 @@ The validation of dataset compilation was conducted on a system running Ubuntu L
 3. The subsequent step involves installing all the necessary dependencies to compile the 112,000 C files present in the dataset.
 
    ```bash
-   # Installing csvtool and unzip packages
-   sudo apt install -y csvtool unzip
-   # SQLite3 development files, useful for building apps with SQLite3 support.
-   sudo apt install -y libsqlite3-dev
-   # Development files for OpenSSL, for apps with SSL support.
-   sudo apt install -y libssl-dev
-   # MySQL/MariaDB client library development files.
-   sudo apt install -y libmysqlclient-dev
-   # PostgreSQL client library development files, for apps with PostgreSQL support.
-   sudo apt install -y libpq-dev
-   # Portable audio I/O library, runtime version.
-   sudo apt install -y libportaudio2
-   # Portable audio I/O library, development files.
-   sudo apt install -y portaudio19-dev
-   # Library for network monitoring; development files.
-   sudo apt install -y libpcap-dev
-   # QR code encoding library; development files.
-   sudo apt install -y libqrencode-dev
-   # Simple DirectMedia Layer development files, a library for making games.
-   sudo apt install -y libsdl2-dev
-   # OpenGL Utility Toolkit (GLUT) development files.
-   sudo apt install -y freeglut3-dev
-   # Development files and documentation for libcurl (OpenSSL flavour).
-   sudo apt install -y libcurl4-openssl-dev
-   
+   sudo apt install -y csvtool unzip libsqlite3-dev libssl-dev libmysqlclient-dev libpq-dev libportaudio2 portaudio19-dev libpcap-dev libqrencode-dev libsdl2-dev freeglut3-dev libcurl4-openssl-dev
    ```
  
 4. Unzip the .C samples from the compressed file (this action will generate a DATASET directory containing all the files):
