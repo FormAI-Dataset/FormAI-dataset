@@ -21,7 +21,7 @@ Cite paper: https://doi.org/10.48550/arXiv.2307.02192
 
 The dataset includes three files:
 
-**a. FormAI_dataset_C_samples-V1.1.zip** - This file contains all the 112,000 C files.
+**a. FormAI_dataset_C_samples-V1.zip** - This file contains all the 112,000 C files.
 
 **b. FormAI_dataset_classification-V1.zip** - This file contains a CSV file with the following six columns: 1. File name, 2. Vulnerability classification, 3. C source code, 4. Vulnerable function name, 5. Line number, 6. Vulnerability type. One C program can contain multiple vulnerabilities. As such this file has 246550 rows. In the fifth column, each C program preserves the structure of the original code by containing the newline character.
 
@@ -50,7 +50,7 @@ In this guide, we illustrate the process of classifying the samples in the FormA
 2. Unzip the .C samples from the compressed file (this action will generate a DATASET directory containing all the files):
 
    ```bash
-      unzip FormAI-dataset/FormAI_dataset_C_samples-V1.zip
+      unzip FormAI-dataset/FormAI_dataset_C_samples-V1.zip && unzip FormAI-dataset/FormAI_dataset_classification-V1.zip
    ```
 3. The subsequent step involves installing all the necessary dependencies to compile the 112,000 C files present in the dataset.
 
@@ -137,7 +137,7 @@ The outpus is the same as ESBMC found :  `FormAI_14569.c,VULNERABLE,main,24.0,bu
    
 SHA256 checksum of the files:
 
-`FormAI_dataset_C_samples-V1.1.zip : cbe6c17f65f8e2828492b2ab803f2a152240f96c0007778b3b0fd06329ad475e`
+`FormAI_dataset_C_samples-V1.zip : fc458020ad0e9b0999882d4bfdd27edfdee2f0ff5de22848e11352d64230ca47`
 `FormAI_dataset_classification-V1.zip : 33552e18ce6b5919d9eb454f584c0510b561baef69c51cf4405f9d85a96631f5`
 `FormAI_dataset_human_readable-V1.csv : 316d7145006f48ec42c9a89b1dccb2c5e2c05012c926af65c0269aba45d47830`
 
