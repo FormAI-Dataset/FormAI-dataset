@@ -57,8 +57,6 @@ The validation of dataset compilation was conducted on a system running Ubuntu L
 3. The subsequent step involves installing all the necessary dependencies to compile the 112,000 C files present in the dataset.
 
    ```bash
-   # Essential compilation tools, like gcc and make.
-   sudo apt install -y build-essential
    # Installing csvtool and unzip packages
    sudo apt install -y csvtool unzip
    # SQLite3 development files, useful for building apps with SQLite3 support.
