@@ -46,13 +46,7 @@ In this guide, we illustrate the process of classifying the samples in the FormA
    ```bash
    git clone https://github.com/FormAI-Dataset/FormAI-dataset/
    ```
-
-2. Unzip the .C samples from the compressed file (this action will generate a DATASET directory containing all the files):
-
-   ```bash
-      unzip FormAI-dataset/FormAI_dataset_C_samples-V1.zip && unzip FormAI-dataset/FormAI_dataset_classification-V1.zip
-   ```
-3. The subsequent step involves installing all the necessary dependencies to compile the 112,000 C files present in the dataset.
+2. The subsequent step involves installing all the necessary dependencies to compile the 112,000 C files present in the dataset.
 
    ```bash
    # Essential compilation tools, like gcc and make.
@@ -84,6 +78,12 @@ In this guide, we illustrate the process of classifying the samples in the FormA
    
    ```
  
+3. Unzip the .C samples from the compressed file (this action will generate a DATASET directory containing all the files):
+
+   ```bash
+      unzip FormAI-dataset/FormAI_dataset_C_samples-V1.zip && unzip FormAI-dataset/FormAI_dataset_classification-V1.zip
+   ```
+
 4. One can verify the successful installation of the dependencies by testing 1000 files from the dataset. This command will verify that the first 1000 files from the dataset compile successfully (this process usually takes around 2-3 minutes). 
 
    ```bash
@@ -94,7 +94,7 @@ In this guide, we illustrate the process of classifying the samples in the FormA
    ```bash
    gcc -x c <(csvtool drop 3679 FormAI_dataset.csv | csvtool -t ',' head 1 - | csvtool -t ',' col 3 - | sed 's/^"//; s/"$//' | sed 's/""/"/g') -lm -lcrypto -lmysqlclient -lpq -lssl -lportaudio -lpcap -lqrencode -lSDL2 -lglut -lGLU -lGL -lcurl -o output
    ```
-   
+
 6. Each program is categorized according to the vulnerabilities found in its code, using a formal verification technique that leverages the Efficient SMT-based Bounded Model Checker (ESBMC).
 
    ESBMC is a mature, permissively licensed open-source context-bounded model checker for verifying single- and multithreaded C/C++, Kotlin, and Solidity programs. It can automatically verify predefined safety properties (e.g., bounds check, pointer safety, overflow) and user-defined program assertions.
