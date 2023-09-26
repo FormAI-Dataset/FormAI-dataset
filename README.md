@@ -94,7 +94,7 @@ In this guide, we illustrate the process of classifying the samples in the FormA
    ```bash
    gcc -x c <(csvtool drop 3679 FormAI_dataset.csv | csvtool -t ',' head 1 - | csvtool -t ',' col 3 - | sed 's/^"//; s/"$//' | sed 's/""/"/g') -lm -lcrypto -lmysqlclient -lpq -lssl -lportaudio -lpcap -lqrencode -lSDL2 -lglut -lGLU -lGL -lcurl -o output
    ```
-
+   
 6. Each program is categorized according to the vulnerabilities found in its code, using a formal verification technique that leverages the Efficient SMT-based Bounded Model Checker (ESBMC).
 
    ESBMC is a mature, permissively licensed open-source context-bounded model checker for verifying single- and multithreaded C/C++, Kotlin, and Solidity programs. It can automatically verify predefined safety properties (e.g., bounds check, pointer safety, overflow) and user-defined program assertions.
