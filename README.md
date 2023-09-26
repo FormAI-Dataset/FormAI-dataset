@@ -69,12 +69,12 @@ The validation of dataset compilation was conducted on a system running Ubuntu L
 5. One can verify the successful installation of the dependencies by testing 1000 files from the dataset. This command will verify that the first 1000 files from the dataset compile successfully (this process usually takes around 2-3 minutes). 
 
    ```bash
-   find DATASET -name "*.c" | head -n 1000 | xargs -I{} bash -c 'gcc {} -w -lcrypto -lsqlite3 -lmysqlclient -lpq -lssl -lportaudio -lpcap -lqrencode -lSDL2 -lglut -lGLU -lGL -lcurl -lm &>/dev/null &&  echo {}' | wc -l
+   find DATASET -name "*.c" | head -n 1000 | xargs -I{} bash -c 'gcc {} -w -lcrypto -pthread -lsqlite3 -lmysqlclient -lpq -lssl -lportaudio -lpcap -lqrencode -lSDL2 -lglut -lGLU -lGL -lcurl -lm &>/dev/null &&  echo {}' | wc -l
    ```
 6. If the result is 1000 from the previous run, it indicates that all the tested files were compiled without issues. Our system is ready to use the provided files. To retrieve and compile the C code from a specific row in the FormAI_dataset.csv, use the command below (taking row number 3679 as a example):
 
    ```bash
-   gcc -x c <(csvtool drop 3679 FormAI_dataset.csv | csvtool -t ',' head 1 - | csvtool -t ',' col 3 - | sed 's/^"//; s/"$//' | sed 's/""/"/g') -lm -lcrypto -lmysqlclient -lpq -lssl -lportaudio -lpcap -lqrencode -lSDL2 -lglut -lGLU -lGL -lcurl -o output
+   gcc -x c <(csvtool drop 3679 FormAI_dataset.csv | csvtool -t ',' head 1 - | csvtool -t ',' col 3 - | sed 's/^"//; s/"$//' | sed 's/""/"/g') -lcrypto -pthread -lsqlite3 -lmysqlclient -lpq -lssl -lportaudio -lpcap -lqrencode -lSDL2 -lglut -lGLU -lGL -lcurl -lm -o output
    ```
 
 7. Each program is categorized according to the vulnerabilities found in its code, using a formal verification technique that leverages the Efficient SMT-based Bounded Model Checker (ESBMC).
