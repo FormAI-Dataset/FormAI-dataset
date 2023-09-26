@@ -41,6 +41,8 @@ The FormAI dataset is suitable for machine learning training, testing vulnerabil
 
 In this guide, we illustrate the process of classifying the samples in the FormAI dataset and how to extract the C source code from the categorized csv files. This serves as an ideal foundation for those looking to build upon these findings in future research.
 
+The validation of dataset compilation was conducted on a system running Ubuntu version 22.04.01 with a Linux kernel version 5.19.0.
+
 1. Start by obtaining the entire FormAI dataset from Github with the given command:
 
    ```bash
