@@ -57,7 +57,7 @@ The validation of dataset compilation was conducted on a system running Ubuntu L
 3. The subsequent step involves installing all the necessary dependencies to compile the 112,000 C files present in the dataset.
 
    ```bash
-   sudo apt install -y csvtool unzip libsqlite3-dev libssl-dev libmysqlclient-dev libpq-dev libportaudio2 portaudio19-dev libpcap-dev libqrencode-dev libsdl2-dev freeglut3-dev libcurl4-openssl-dev
+   sudo apt install -y build-essential csvtool unzip libsqlite3-dev libssl-dev libmysqlclient-dev libpq-dev libportaudio2 portaudio19-dev libpcap-dev libqrencode-dev libsdl2-dev freeglut3-dev libcurl4-openssl-dev
    ```
  
 4. Unzip the .C samples from the compressed file (this action will generate a DATASET directory containing all the files):
