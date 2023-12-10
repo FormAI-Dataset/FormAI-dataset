@@ -9,13 +9,11 @@ tasks like string manipulation. Each program is labelled based on vulnerabilitie
 
 # Cite
 
-Paper accepted for Publication: 19th International Conference on Predictive Models and Data Analytics in Software Engineering (PROMISE 2023), December 8, 2023, San Francisco, CA, USA
+Paper presented at the 19th International Conference on Predictive Models and Data Analytics in Software Engineering (PROMISE 2023) on December 8, 2023, in San Francisco, CA, USA.
 
-Preprint: https://arxiv.org/pdf/2307.02192.pdf
+Cite paper (ACM digital library): [https://dl.acm.org/doi/10.1145/3617555.3617874](https://dl.acm.org/doi/10.1145/3617555.3617874)
 
-Cite dataset: https://dx.doi.org/10.21227/vp9n-wv96
-
-Cite paper: https://doi.org/10.48550/arXiv.2307.02192
+Cite dataset (IEEE DataPort): https://dx.doi.org/10.21227/vp9n-wv96
 
 # Architecture
 
