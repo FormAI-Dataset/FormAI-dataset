@@ -61,7 +61,7 @@ The design and methodology behind the creation of the FormAI-v2 dataset are depi
 
 # Guidelines for Getting Started with FormAI-v2
 
-The FormAI-v2 dataset is larger and includes more vulnerabilities compared to FormAI-v1. Therefore, we encourage the research community to switch from FormAI-v1 to FormAI-v2. Furthermore, FormAI-v2 includes additional metrics that can be utilized in machine learning classification, such as cyclomatic complexity, which helps in understanding the code complexities of each generated program. The new dataset uses the more comprehensive JSON format, unlike FormAI-v1 which used CSV. Here is an example of how a JSON entry looks in the dataset:
+The FormAI-v2 dataset is larger and includes more vulnerabilities compared to FormAI-v1. Moreover, it includes AI-generated C code not only from GPT-3.5 as in FormAI-v1 but from eight different models, such as CodeLLAM2, GEMINI-pro, GPT4, and Falcon-180B. Therefore, we encourage the research community to switch from FormAI-v1 to FormAI-v2. Furthermore, FormAI-v2 includes additional metrics that can be utilized in machine learning classification, such as cyclomatic complexity, which helps in understanding the code complexities of each generated program. The new dataset uses the more comprehensive JSON format, unlike FormAI-v1 which used CSV. Here is an example of how a JSON entry looks in the dataset:
 
  ```JSON
 {
