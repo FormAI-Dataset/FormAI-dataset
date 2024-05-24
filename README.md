@@ -119,9 +119,74 @@ To begin using the FormAI-v2 dataset, follow the instructions below:
 5. One can verify the successful installation of the dependencies by testing 1000 files from the dataset. This command will verify that the first 1000 files from the dataset compile successfully (this process usually takes around 2-3 minutes). 
 
    ```bash
-   find DATASET -name "*.c" | head -n 1000 | xargs -I{} bash -c 'gcc {} -w -lcrypto -lfftw3 -pthread -lsqlite3 -lmysqlclient -lpq -lssl -lportaudio -lpcap -lqrencode -lSDL2 -lglut -lGLU -lGL -lcurl -lm &>/dev/null &&  echo {}' | wc -l
+   find DATASET-v2 -name "*.c" | head -n 1000 | xargs -I{} bash -c 'gcc {} -w -lcrypto -lfftw3 -pthread -lsqlite3 -lmysqlclient -lpq -lssl -lportaudio -lpcap -lqrencode -lSDL2 -lglut -lGLU -lGL -lcurl -lm &>/dev/null &&  echo {}' | wc -l
    ```
+      NOTE: If the output is not equal to 1000, it indicates that there may be missing dependencies or that certain programs fail to compile, particularly in earlier versions of GCC. This situation can occur in Ubuntu 20.04 LTS, where the default GCC version is 9.4.0, which is older than 11.4.0. However, it's important to note that this should not impact the usability of the DATASET.
+
+6. If the result is 1000 from the previous run, it indicates that all the tested files were compiled without issues. Our system is ready to use the provided files. To retrieve and compile a C code from the JSON file, use the command below (taking the 12345th JSON entry  as a example):
+
+   ```bash
+   gcc -x c <(jq -r '.[12345].source_code' FormAI-v2.json) -lcrypto -pthread -lsqlite3 -lmysqlclient -lpq -lssl -lportaudio -lpcap -lqrencode -lSDL2 -lglut -lGLU -lGL -lcurl -lm -o output
+   ```
+   NOTE: FormAI-v2.json is more than 2.5GB, so extracting C code from JSON this way is not the most efficient method. However, it is suitable for demonstration purposes. For more efficient processing, using Python is recommended.
+
+ 7. Each program is categorized according to the vulnerabilities found in its code, using a formal verification technique that leverages the Efficient SMT-based Bounded Model Checker (ESBMC).
+    
+      ESBMC is a mature, permissively licensed open-source context-bounded model checker for verifying single- and multithreaded C/C++, Kotlin, and Solidity programs. It can automatically verify predefined safety properties (e.g., bounds check, pointer safety, overflow) and user-defined program assertions.
    
+      The Github page for ESBMC can be found at the following link: https://github.com/esbmc/esbmc.
+   ESBMC depends on numerous external tools and has a variety of intricate dependencies, from SMT solvers to more complex ones. Nevertheless, there's an option to utilize a pre-compiled binary version, which can be obtained using the command provided below:
+
+      ```bash
+      wget https://github.com/esbmc/esbmc/releases/download/v7.5/ESBMC-Linux.zip && unzip ESBMC-Linux.zip && rm ESBMC-Linux.zip && chmod 777 bin/esbmc
+      ```
+
+8. If you wish to test ESBMC 7.5 on an individual file from the FormAI-v2 dataset, use the command below (taking falcon180b-1656.c  as a reference):
+
+   ```bash
+   bin/esbmc DATASET-v2/falcon180b-1656.c  --overflow --memory-leak-check --timeout 30 --unwind 1 --multi-property --no-unwinding-assertions
+
+   
+   ```
+   The file appears to be vulnerable, revealing a buffer overflow in the scanf() function. Below is the output from ESBMC:
+
+    ```
+      Enter a URL: 
+      
+      State 2 file falcon180b-1656.c line 67 column 5 function main thread 0
+      ----------------------------------------------------
+      Violated property:
+        file falcon180b-1656.c line 67 column 5 function main
+        buffer overflow on scanf
+        0
+      
+      
+      VERIFICATION FAILED
+   ```
+9. As a concluding action, you can confirm that this vulnerability is indeed present in the FormAI-v2 dataset by executing the command below:
+
+   ```bash
+   jq -r '.[] | select(.file_name == "falcon180b-1656.c")' FormAI-v2.json
+   ```
+   The outpus is the same as ESBMC found :  buffer overflow on line 67
+   
+   ```JSON
+   {
+     "category": "VULNERABLE",
+     "file_name": "falcon180b-1656.c",
+     "verification_finished": "yes",
+     "vulnerable_line": 67,
+     "column": 5,
+     "function": "main",
+     "violated_property": "\n  file falcon180b-1656.c line 67 column 5 function main\n",
+     "stack_trace": "\n  c:@F@main\n  buffer overflow on scanf\n  0",
+     "error_type": "buffer overflow on scanf",
+     "code_snippet": "}\n\nint main() {\n    char url[MAX_URL_LENGTH];\n    printf(\"Enter a URL: \");\n    scanf(\"%s\", url);\n    sanitize_url(url);\n    printf(\"Sanitized URL: %s\\n\", url);\n    return 0;\n}",
+     "source_code": "//Falcon-180B DATASET v1.0 Category: URL Sanitizer ; Style: puzzling\n#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <ctype.h>\n\n#define MAX_URL_LENGTH 2048\n\nint is_valid_url_char(char c) {\n    if (isalnum(c) || c == '-') {\n        return 1;\n    }\n    switch(c) {\n        case '.':\n        case '_':\n        case '~':\n        case '+':\n        case '=':\n        case '%':\n        case '?':\n        case '#':\n        case '&':\n        case '/':\n        case ':':\n        case ';':\n        case ',':\n        case '@':\n        case '!':\n        case '$':\n        case '*':\n        case '(':\n        case ')':\n        case '\"':\n            return 1;\n        default:\n            return 0;\n    }\n}\n\nint is_valid_url(char* url) {\n    int i = 0;\n    while (url[i]!= '\\0' && i < MAX_URL_LENGTH) {\n        if (!is_valid_url_char(url[i])) {\n            return 0;\n        }\n        i++;\n    }\n    return 1;\n}\n\nvoid sanitize_url(char* url) {\n    int i = 0;\n    while (url[i]!= '\\0' && i < MAX_URL_LENGTH) {\n        if (!is_valid_url_char(url[i])) {\n            url[i] = '%';\n            i++;\n        } else {\n            i++;\n        }\n    }\n    url[MAX_URL_LENGTH - 1] = '\\0';\n}\n\nint main() {\n    char url[MAX_URL_LENGTH];\n    printf(\"Enter a URL: \");\n    scanf(\"%s\", url);\n    sanitize_url(url);\n    printf(\"Sanitized URL: %s\\n\", url);\n    return 0;\n}",
+     "num_lines": 71,
+     "cyclomatic_complexity": 8.0
+   }
+   ```
 
 # Guidelines for Getting Started with FormAI-v1
 All C programs in this dataset were generated by GPT-3.5-turbo. From the entire dataset 109,757 sample files can be compiled using only the command 'gcc -lm'. However, the remaining 3% of samples are more complex, utilizing external libraries such as OpenSSL, sqlite3, and others. After installing the required dependencies, all files should compile without any issues.
@@ -210,8 +275,16 @@ The outpus is the same as ESBMC found :  `FormAI_14569.c,VULNERABLE,main,24.0,bu
    
 SHA256 checksum of the files:
 
-`FormAI_dataset_C_samples-V1.zip : fc458020ad0e9b0999882d4bfdd27edfdee2f0ff5de22848e11352d64230ca47`
-`FormAI_dataset_classification-V1.zip : 82b00611d71ff992d85b7bba20ebece580bfd055939b0142861326dff17ede74`
-`FormAI_dataset_human_readable-V1.csv : 316d7145006f48ec42c9a89b1dccb2c5e2c05012c926af65c0269aba45d47830`
+**FormAI-v1 dataset files:**
+
+   `FormAI_dataset_C_samples-V1.zip : fc458020ad0e9b0999882d4bfdd27edfdee2f0ff5de22848e11352d64230ca47`
+   `FormAI_dataset_classification-V1.zip : 82b00611d71ff992d85b7bba20ebece580bfd055939b0142861326dff17ede74`    
+   `FormAI_dataset_human_readable-V1.csv : 316d7145006f48ec42c9a89b1dccb2c5e2c05012c926af65c0269aba45d47830`
+
+**FormAI-v2 dataset files:**
+  
+   `FormAI-v2-DATASET.7z : 3efbe466d65f96a91ebbf388d7e3a6c1e15941fffd5a5f10f10de2eeec9ebef3`    
+   `FormAI-v2-classification.7z.001 : 1bdca8c4942ee9dd6f5a772640b9c9b9732ddc67afd996babde92e8c20c10b91`     
+   `FormAI-v2-classification.7z.002 : 83b862cb732c7298a5c3e8798ae873cdf80ab7670defc9a2a0d9d3eaa8bbd127` 
 
 WARNING: BE CAREFUL WHEN RUNNING THE COMPILED CODES, SOME CAN CONNECT TO THE WEB, SCAN YOUR LOCAL NETWORK, OR DELETE A RANDOM FILE FROM YOUR FILE SYSTEM. ALWAYS CHECK THE SOURCE CODE AND THE COMMENTS IN THE FILE BEFORE RUNNING IT!!!
