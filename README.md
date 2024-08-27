@@ -49,15 +49,20 @@ The design and methodology behind the creation of the FormAI-v2 dataset are depi
 ![FormAIv2-github](https://github.com/user-attachments/assets/f3c75fb6-d2b3-462a-8600-adb85aebd83b)
 
 
+# The dataset 
 
+The FormAI-v2 dataset is larger and more comprehensive than the FormAI-v1 dataset. Therefore, we strongly encourage the research community to transition from FormAI-v1 to FormAI-v2.  The new dataset comprises 331,000 AI-generated C files from nine different models including Falcon2-11B, Falcon180B, GPT4o-mini, GPT-3.5, CodeLlama-13B, Llama2 13B, Gemini Pro 1.0, Mistral 7B, and Gemma 7B. All files are compilable and contain at least 50 lines of code. Furthermore, FormAI-v2 includes additional metrics that can be utilized in machine learning classification, such as cyclomatic complexity, which helps in understanding the code complexities of each generated program.
 
+There are 4 files in the dataset:
 
+**a. FormAI-v2-DATASET.7z** - This file contains all the compilable 331,000 C files.
 
+**b. FormAI-v2-DATASET_without_clones.7z** : It contains 310531 C files (Type1, Type2, , Type3-1 and Type3-2 clones are all removed)
 
+**c. FormAI-v2-classification.7z.001** and **FormAI-v2-classification.7z.002**: It includes a file named `FormAI-v2.json`, which contains the labeled dataset with the vulnerability classification of the files, the precise location of the vulnerabilities, and the corresponding C code.
 
-# Guidelines for Getting Started with FormAI-v2
+The new dataset uses the more comprehensive JSON format, unlike FormAI-v1 which used CSV. Here is an example of how a JSON entry looks in the dataset:
 
-The FormAI-v2 dataset is larger and includes more vulnerabilities compared to FormAI-v1. Moreover, it includes AI-generated C code not only from GPT-3.5 as in FormAI-v1 but from eight different models, such as CodeLLAM2, GEMINI-pro, GPT4, and Falcon-180B. Therefore, we encourage the research community to switch from FormAI-v1 to FormAI-v2. Furthermore, FormAI-v2 includes additional metrics that can be utilized in machine learning classification, such as cyclomatic complexity, which helps in understanding the code complexities of each generated program. The new dataset uses the more comprehensive JSON format, unlike FormAI-v1 which used CSV. Here is an example of how a JSON entry looks in the dataset:
 
  ```JSON
 {
@@ -77,14 +82,10 @@ The FormAI-v2 dataset is larger and includes more vulnerabilities compared to Fo
 }
  ```
 
-## Downloading and using FormAI-v2 dataset
-
-The dataset includes three files:
+# Guidelines for Getting Started with FormAI-v2
 
 
-**a. FormAI-v2-DATASET.7z** - This file contains all the compilable 265,000 C files.
 
-**b. FormAI-v2-classification.7z.001** and **FormAI-v2-classification.7z.002**, which contain FormAI-v2.json, including the vulnerability classification of the files along with the C code.
 
 The FormAI-v2 dataset is suitable for machine learning training, testing vulnerability detection softwares, and various tasks that require a substantial collection of C files. The validation of dataset compilation was conducted on a system running Ubuntu LTS version 22.04.03 with a Linux kernel version 5.19.0 and gcc 11.4.0
 
