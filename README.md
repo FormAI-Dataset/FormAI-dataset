@@ -282,8 +282,8 @@ SHA256 checksum of the files:
 
 **FormAI-v2 dataset files:**
   
-   `FormAI-v2-DATASET.7z : 3efbe466d65f96a91ebbf388d7e3a6c1e15941fffd5a5f10f10de2eeec9ebef3`    
-   `FormAI-v2-classification.7z.001 : 1bdca8c4942ee9dd6f5a772640b9c9b9732ddc67afd996babde92e8c20c10b91`     
-   `FormAI-v2-classification.7z.002 : 83b862cb732c7298a5c3e8798ae873cdf80ab7670defc9a2a0d9d3eaa8bbd127` 
+   `FormAI-v2-DATASET.7z : b33ed43d318b24e22a32e7f094deaea21e3acd1f5899e3e2725682e0deaaaddf`    
+   `FormAI-v2-classification.7z.001 : 512a344251c1b86ecef85ef8e47d16cc7fec259be10c578af21cd6444561c9c0`     
+   `FormAI-v2-classification.7z.002 : dd5c7901641e1d0262c37f23700bdb20a4896ceeec4d8e0e9ab8a1499008d4ab` 
 
 WARNING: BE CAREFUL WHEN RUNNING THE COMPILED CODES, SOME CAN CONNECT TO THE WEB, SCAN YOUR LOCAL NETWORK, OR DELETE A RANDOM FILE FROM YOUR FILE SYSTEM. ALWAYS CHECK THE SOURCE CODE AND THE COMMENTS IN THE FILE BEFORE RUNNING IT!!!
