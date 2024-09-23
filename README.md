@@ -282,7 +282,8 @@ SHA256 checksum of the files:
 
 **FormAI-v2 dataset files:**
   
-   `FormAI-v2-DATASET.7z : b33ed43d318b24e22a32e7f094deaea21e3acd1f5899e3e2725682e0deaaaddf`    
+   `FormAI-v2-DATASET.7z : b33ed43d318b24e22a32e7f094deaea21e3acd1f5899e3e2725682e0deaaaddf`   
+   `FormAI-v2-DATASET_without_clones.7z : 3098694cee2f4eb37e19d4c2bb7f0c2a5e053c50169a9a4679b1c3b4f6dd03c4`   
    `FormAI-v2-classification.7z.001 : 512a344251c1b86ecef85ef8e47d16cc7fec259be10c578af21cd6444561c9c0`     
    `FormAI-v2-classification.7z.002 : dd5c7901641e1d0262c37f23700bdb20a4896ceeec4d8e0e9ab8a1499008d4ab` 
 
