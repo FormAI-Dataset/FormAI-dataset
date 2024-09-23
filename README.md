@@ -120,7 +120,7 @@ To begin using the FormAI-v2 dataset, follow the instructions below:
    ```
       NOTE: If the output is not equal to 1000, it indicates that there may be missing dependencies or that certain programs fail to compile, particularly in earlier versions of GCC. This situation can occur in Ubuntu 20.04 LTS, where the default GCC version is 9.4.0, which is older than 11.4.0. However, it's important to note that this should not impact the usability of the DATASET.
 
-6. If the result is 1000 from the previous run, it indicates that all the tested files were compiled without issues. Our system is ready to use the provided files. To retrieve and compile a C code from the JSON file, use the command below (taking the 12345th JSON entry  as a example):
+6. If the result is 1000 from the previous run, it indicates that all the tested files were compiled without issues. Our system is ready to use the provided files. To retrieve and compile a C code from the JSON file, use the command below (taking the 12345th JSON entry as an example):
 
    ```bash
    gcc -x c <(jq -r '.[12345].source_code' FormAI-v2.json) -lcrypto -pthread -lsqlite3 -lmysqlclient -lpq -lssl -lportaudio -lpcap -lqrencode -lSDL2 -lglut -lGLU -lGL -lcurl -lm -o output
