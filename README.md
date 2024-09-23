@@ -101,7 +101,7 @@ To begin using the FormAI-v2 dataset, follow the instructions below:
    ```bash
    sudo apt update && sudo apt upgrade -y && sudo apt install build-essential -y
    ```
-3. The subsequent step involves installing all the necessary dependencies to compile all the 265,000 C files present in the dataset.
+3. The subsequent step involves installing all the necessary dependencies to compile all the C files present in the dataset.
 
    ```bash
    sudo apt install -y build-essential csvtool unzip 7zip libsqlite3-dev libfftw3-dev libssl-dev libmysqlclient-dev libpq-dev libportaudio2 portaudio19-dev libpcap-dev libqrencode-dev libsdl2-dev freeglut3-dev libcurl4-openssl-dev
