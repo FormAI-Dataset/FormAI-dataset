@@ -147,7 +147,9 @@ To begin using the FormAI-v2 dataset, follow the instructions below:
    ```
    The file appears to be vulnerable, revealing a buffer overflow in the scanf() function. Below is the output from ESBMC:
 
-    ```
+    ```bash
+      [Counterexample]
+
       Enter a URL: 
       
       State 2 file falcon180b-1656.c line 67 column 5 function main thread 0
