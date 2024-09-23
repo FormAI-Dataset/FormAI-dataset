@@ -107,7 +107,7 @@ To begin using the FormAI-v2 dataset, follow the instructions below:
    sudo apt install -y build-essential csvtool unzip 7zip libsqlite3-dev libfftw3-dev libssl-dev libmysqlclient-dev libpq-dev libportaudio2 portaudio19-dev libpcap-dev libqrencode-dev libsdl2-dev freeglut3-dev libcurl4-openssl-dev
    ```
 
-4. Unzip the .C samples from the compressed file (this action will generate a DATASET-v2 directory containing all the C files and a JSON file called FormAI-v2.json):
+4. Unzip the .C samples from the compressed file (this action will generate a DATASETv2 directory containing all the C files and a JSON file called FormAI-v2.json):
 
    ```bash
    7z x FormAI-dataset/FormAI-v2-DATASET.7z  && 7z x FormAI-dataset/FormAI-v2-classification.7z.001
@@ -116,7 +116,7 @@ To begin using the FormAI-v2 dataset, follow the instructions below:
 5. One can verify the successful installation of the dependencies by testing 1000 files from the dataset. This command will verify that the first 1000 files from the dataset compile successfully (this process usually takes around 2-3 minutes). 
 
    ```bash
-   find DATASET-v2 -name "*.c" | head -n 1000 | xargs -I{} bash -c 'gcc {} -w -lcrypto -lfftw3 -pthread -lsqlite3 -lmysqlclient -lpq -lssl -lportaudio -lpcap -lqrencode -lSDL2 -lglut -lGLU -lGL -lcurl -lm &>/dev/null &&  echo {}' | wc -l
+   find DATASETv2 -name "*.c" | head -n 1000 | xargs -I{} bash -c 'gcc {} -w -lcrypto -lfftw3 -pthread -lsqlite3 -lmysqlclient -lpq -lssl -lportaudio -lpcap -lqrencode -lSDL2 -lglut -lGLU -lGL -lcurl -lm &>/dev/null &&  echo {}' | wc -l
    ```
       NOTE: If the output is not equal to 1000, it indicates that there may be missing dependencies or that certain programs fail to compile, particularly in earlier versions of GCC. This situation can occur in Ubuntu 20.04 LTS, where the default GCC version is 9.4.0, which is older than 11.4.0. However, it's important to note that this should not impact the usability of the DATASET.
 
