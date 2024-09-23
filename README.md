@@ -141,7 +141,7 @@ To begin using the FormAI-v2 dataset, follow the instructions below:
 8. If you wish to test ESBMC 7.5 on an individual file from the FormAI-v2 dataset, use the command below (taking falcon180b-1656.c  as a reference):
 
    ```bash
-   bin/esbmc DATASET-v2/falcon180b-1656.c  --overflow --memory-leak-check --timeout 30 --unwind 1 --multi-property --no-unwinding-assertions
+   bin/esbmc DATASETv2/falcon180b-1656.c  --overflow --memory-leak-check --timeout 30 --unwind 1 --multi-property --no-unwinding-assertions
 
    
    ```
