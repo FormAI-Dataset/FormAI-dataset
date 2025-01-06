@@ -35,9 +35,9 @@ series = {PROMISE 2023}
 
 **FormAI-v2**:
 
-The FormAI-v2 with 331,000 C samples just released. 
+The FormAI-v2 dataset consisting of 331,000 C samples, has been published in the *Empirical Software Engineering* journal.
 
-Cite paper (Sprtinger - Empirical Software Engineering): [https://link.springer.com/article/10.1007/s10664-024-10590-1](https://link.springer.com/article/10.1007/s10664-024-10590-1)
+Cite paper (Springer - Empirical Software Engineering): [https://link.springer.com/article/10.1007/s10664-024-10590-1](https://link.springer.com/article/10.1007/s10664-024-10590-1)
 
    ```bibtex
 @article{tihanyi2024secure,
