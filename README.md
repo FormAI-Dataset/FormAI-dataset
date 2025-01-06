@@ -35,7 +35,7 @@ series = {PROMISE 2023}
 
 **FormAI-v2**:
 
-The FormAI-v2 dataset consisting of 331,000 C samples, has been published in the *Empirical Software Engineering* journal.
+The FormAI-v2 dataset, which contains 331,000 C samples, has been published in the Empirical Software Engineering journal in the article titled "How Secure is AI-Generated Code: A Large-Scale Comparison of Large Language Models".
 
 Cite paper (Springer - Empirical Software Engineering): [https://link.springer.com/article/10.1007/s10664-024-10590-1](https://link.springer.com/article/10.1007/s10664-024-10590-1)
 
