@@ -37,7 +37,23 @@ series = {PROMISE 2023}
 
 The FormAI-v2 with 331,000 C samples just released. 
 
-Cite paper (arXiv): [https://arxiv.org/abs/2404.18353](https://arxiv.org/abs/2404.18353)
+Cite paper (Sprtinger - Empirical Software Engineering): [https://link.springer.com/article/10.1007/s10664-024-10590-1](https://link.springer.com/article/10.1007/s10664-024-10590-1)
+
+   ```bibtex
+@article{tihanyi2024secure,
+  title={How secure is AI-generated code: a large-scale comparison of large language models},
+  author={Tihanyi, Norbert and Bisztray, Tamas and Ferrag, Mohamed Amine and Jain, Ridhi and Cordeiro, Lucas C.},
+  journal={Empirical Software Engineering},
+  volume={30},
+  number={47},
+  year={2025},
+  publisher={Springer},
+  doi={10.1007/s10664-024-10590-1},
+  url={https://doi.org/10.1007/s10664-024-10590-1}
+}
+   ```
+
+
 
 
 
@@ -104,7 +120,7 @@ To begin using the FormAI-v2 dataset, follow the instructions below:
 3. The subsequent step involves installing all the necessary dependencies to compile all the C files present in the dataset.
 
    ```bash
-   sudo apt install -y build-essential csvtool unzip 7zip libsqlite3-dev libfftw3-dev libssl-dev libmysqlclient-dev libpq-dev libportaudio2 portaudio19-dev libpcap-dev libqrencode-dev libsdl2-dev freeglut3-dev libcurl4-openssl-dev
+   sudo apt install -y build-essential csvtool unzip 7zip libsqlite3-dev libfftw3-dev libssl-dev libncurses5-dev libncursesw5-dev libmysqlclient-dev libpq-dev libportaudio2 portaudio19-dev libpcap-dev libqrencode-dev libsdl2-dev freeglut3-dev libcurl4-openssl-dev
    ```
 
 4. Unzip the .C samples from the compressed file (this action will generate a DATASETv2 directory containing all the C files and a JSON file called FormAI-v2.json):
@@ -116,7 +132,7 @@ To begin using the FormAI-v2 dataset, follow the instructions below:
 5. One can verify the successful installation of the dependencies by testing 1000 files from the dataset. This command will verify that the first 1000 files from the dataset compile successfully (this process usually takes around 2-3 minutes). 
 
    ```bash
-   find DATASETv2 -name "*.c" | head -n 1000 | xargs -I{} bash -c 'gcc {} -w -lcrypto -lfftw3 -pthread -lsqlite3 -lmysqlclient -lpq -lssl -lportaudio -lpcap -lqrencode -lSDL2 -lglut -lGLU -lGL -lcurl -lm &>/dev/null &&  echo {}' | wc -l
+   find DATASETv2 -name "*.c" | head -n 1000 | xargs -I{} bash -c 'gcc {} -w -lcrypto -lfftw3 -pthread -lsqlite3 -lmysqlclient -lpq -lssl -lportaudio -lpcap -lqrencode -lSDL2 -lglut -lGLU -lGL -lcurl -lm -lncurses &>/dev/null &&  echo {}' | wc -l
    ```
       NOTE: If the output is not equal to 1000, it indicates that there may be missing dependencies or that certain programs fail to compile, particularly in earlier versions of GCC. This situation can occur in Ubuntu 20.04 LTS, where the default GCC version is 9.4.0, which is older than 11.4.0. However, it's important to note that this should not impact the usability of the DATASET.
 
